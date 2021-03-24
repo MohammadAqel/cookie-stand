@@ -1,6 +1,6 @@
 'use strict';
 
-
+let total1=[];
 let hours = ['6am:','7am:','8am:','9am:','10am:','11am:','12pm:','1pm:','2pm:','3pm:','4pm:','5pm:','6pm:','7pm:','Total:'];
 let Total=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
@@ -86,7 +86,45 @@ const lima = new Store('Lima',2,16,4.6);
 lima.custPerHour();
 lima.render();
 
-dubai.totals();
+const tableEl = document.getElementById('table');
+function tableFooter(){
+  const totRowEl = document.createElement('tr');
+  totRowEl.id = 'lastRow';
+  tableEl.appendChild(totRowEl);
+  const tothEl = document.createElement('th');
+  totRowEl.appendChild(tothEl);
+  tothEl.textContent = 'Totals';
+  for(let i=0; i<Total.length ; i++){
+    const totdEl = document.createElement('th');
+    totRowEl.appendChild(totdEl);
+    totdEl.textContent = Total[i];
+  }
+}
+tableFooter();
+
+let MyForm = document.getElementById('Cookies Form');
+let CookiesSection = document.getElementById('Cookies Profile');
+
+MyForm.addEventListener('submit',AddNewRestaurant)
+function AddNewRestaurant(event) {
+  event.preventDefault();
+  let RestaurantLocation = event.target.location.value;
+    console.log(RestaurantLocation);
+    let minCust = event.target.minCust.value;
+    console.log(minCust);
+    let maxCust = event.target.maxCust.value;
+    console.log(maxCust);
+    let avgCookieS = event.target.avgCookieS.value;
+    console.log(avgCookieS);
+let newloc=new Store(RestaurantLocation,minCust,maxCust,avgCookieS);
+newloc.custPerHour()
+newloc.render();
+const tableFoot = document.getElementById('lastRow');
+  tableEl.removeChild(tableFoot);
+  tableFooter();
+
+
+}
 
 
 // 'use strict';
