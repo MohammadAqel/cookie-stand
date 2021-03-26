@@ -68,6 +68,13 @@ a{
     
     
 }
+#Cookies Form{
+    
+        width: 210px;
+        height: 250px;
+        margin: 10px;   
+        border-radius: 20px;
+}
 
 /* #1{
     float: left;
